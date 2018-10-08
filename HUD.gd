@@ -21,10 +21,12 @@ func set_message(value):
     $MessageLabel.text = value
 
 func player_death():
+    $GameOver.play(0)
     set_message("Game Over")
     set_visibilities()
 
 func success_end():
+    $EpicWin.play(0)
     set_message("Congratulations!")
     set_visibilities()
 
