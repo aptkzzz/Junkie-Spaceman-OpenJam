@@ -10,3 +10,6 @@ Goal of game - kill all enemies.
 All arts and main OST were created by our team. 
 We use Oestrogen font https://www.1001freefonts.com/oestrogen.font
 Sounds were created by https://github.com/inexorgame/audioaugust
+Arts - Creative Commons Attribution v4.0 International
+## Road map
+We are going to update sprites, add new enemies and mooooore levels. Also we're working on plot of this game.
