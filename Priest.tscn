@@ -1,0 +1,157 @@
+[gd_scene load_steps=25 format=2]
+
+[ext_resource path="res://Priest.gd" type="Script" id=1]
+[ext_resource path="res://Drop.tscn" type="PackedScene" id=2]
+[ext_resource path="res://art/priest_frames/priest_frame_0.png" type="Texture" id=3]
+[ext_resource path="res://art/priest_frames/priest_frame_1.png" type="Texture" id=4]
+[ext_resource path="res://art/priest_frames/priest_frame_2.png" type="Texture" id=5]
+[ext_resource path="res://art/priest_frames/priest_frame_3.png" type="Texture" id=6]
+[ext_resource path="res://art/priest_frames/priest_frame_4.png" type="Texture" id=7]
+[ext_resource path="res://art/priest_frames/priest_frame_5.png" type="Texture" id=8]
+[ext_resource path="res://art/priest_frames/priest_frame_6.png" type="Texture" id=9]
+[ext_resource path="res://art/priest_frames/priest_frame_7.png" type="Texture" id=10]
+[ext_resource path="res://art/priest_frames/priest_frame_8.png" type="Texture" id=11]
+[ext_resource path="res://art/priest_frames/priest_frame_9.png" type="Texture" id=12]
+[ext_resource path="res://art/priest_frames/priest_frame_10.png" type="Texture" id=13]
+[ext_resource path="res://art/priest_frames/priest_face_2.png" type="Texture" id=14]
+[ext_resource path="res://art/priest_frames/priest_face_1.png" type="Texture" id=15]
+[ext_resource path="res://art/priest_frames/priest_face_0.png" type="Texture" id=16]
+[ext_resource path="res://art/priest_frames/priest_eyes_2.png" type="Texture" id=17]
+[ext_resource path="res://art/priest_frames/priest_eyes_1.png" type="Texture" id=18]
+[ext_resource path="res://art/priest_frames/priest_eyes_0.png" type="Texture" id=19]
+
+[sub_resource type="CapsuleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 32.0
+height = 64.0
+
+[sub_resource type="SpriteFrames" id=2]
+
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "default",
+"speed": 20.0
+} ]
+
+[sub_resource type="CircleShape2D" id=3]
+
+custom_solver_bias = 0.0
+radius = 50.0
+
+[sub_resource type="SpriteFrames" id=4]
+
+animations = [ {
+"frames": [ ExtResource( 14 ) ],
+"loop": true,
+"name": "2",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 15 ) ],
+"loop": true,
+"name": "1",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 16 ) ],
+"loop": true,
+"name": "0",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=5]
+
+animations = [ {
+"frames": [ ExtResource( 17 ) ],
+"loop": true,
+"name": "2",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 18 ) ],
+"loop": true,
+"name": "1",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 19 ) ],
+"loop": true,
+"name": "0",
+"speed": 5.0
+} ]
+
+[node name="Priest" type="KinematicBody2D" groups=[
+"Enemies",
+]]
+
+scale = Vector2( 1.5, 1.5 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 82
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+_sections_unfolded = [ "Collision", "Transform" ]
+gravity = 1000
+walk_force = 900
+walk_min_speed = 19
+walk_max_speed = 380
+stop_force = 2000
+hp = 20
+damage = 10
+max_drop = 10
+Drop = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
+
+shape = SubResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="." index="1"]
+
+frames = SubResource( 2 )
+animation = "default"
+frame = 9
+playing = true
+
+[node name="HitTimer" type="Timer" parent="." index="2"]
+
+process_mode = 1
+wait_time = 0.5
+one_shot = false
+autostart = false
+
+[node name="Area2D" type="Area2D" parent="." index="3"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_mask = 2
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+
+shape = SubResource( 3 )
+
+[node name="WalkTimer" type="Timer" parent="." index="4"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[node name="AnimatedFaces" type="AnimatedSprite" parent="." index="5"]
+
+frames = SubResource( 4 )
+animation = "0"
+
+[node name="AnimatedEyes" type="AnimatedSprite" parent="." index="6"]
+
+frames = SubResource( 5 )
+animation = "0"
+
+[connection signal="timeout" from="HitTimer" to="." method="_on_HitTimer_timeout"]
+
+[connection signal="timeout" from="WalkTimer" to="." method="_on_WalkTimer_timeout"]
+
+

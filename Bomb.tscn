@@ -1,0 +1,111 @@
+[gd_scene load_steps=26 format=2]
+
+[ext_resource path="res://Bomb.gd" type="Script" id=1]
+[ext_resource path="res://art/bomb_frames/bomb_frame_0.png" type="Texture" id=2]
+[ext_resource path="res://art/bomb_frames/bomb_frame_1.png" type="Texture" id=3]
+[ext_resource path="res://art/bomb_frames/bomb_frame_2.png" type="Texture" id=4]
+[ext_resource path="res://art/bomb_frames/bomb_frame_3.png" type="Texture" id=5]
+[ext_resource path="res://art/bomb_frames/bomb_frame_4.png" type="Texture" id=6]
+[ext_resource path="res://art/bomb_frames/bomb_frame_5.png" type="Texture" id=7]
+[ext_resource path="res://art/bomb_frames/bomb_frame_6.png" type="Texture" id=8]
+[ext_resource path="res://art/bomb_frames/bomb_frame_7.png" type="Texture" id=9]
+[ext_resource path="res://art/bomb_frames/bomb_frame_8.png" type="Texture" id=10]
+[ext_resource path="res://art/explosion_frames/explosion_frame_0.png" type="Texture" id=11]
+[ext_resource path="res://art/explosion_frames/explosion_frame_1.png" type="Texture" id=12]
+[ext_resource path="res://art/explosion_frames/explosion_frame_2.png" type="Texture" id=13]
+[ext_resource path="res://art/explosion_frames/explosion_frame_3.png" type="Texture" id=14]
+[ext_resource path="res://art/explosion_frames/explosion_frame_4.png" type="Texture" id=15]
+[ext_resource path="res://art/explosion_frames/explosion_frame_5.png" type="Texture" id=16]
+[ext_resource path="res://art/explosion_frames/explosion_frame_6.png" type="Texture" id=17]
+[ext_resource path="res://art/explosion_frames/explosion_frame_7.png" type="Texture" id=18]
+[ext_resource path="res://art/explosion_frames/explosion_frame_8.png" type="Texture" id=19]
+[ext_resource path="res://art/explosion_frames/explosion_frame_9.png" type="Texture" id=20]
+[ext_resource path="res://art/explosion_frames/explosion_frame_10.png" type="Texture" id=21]
+[ext_resource path="res://art/explosion_frames/explosion_frame_11.png" type="Texture" id=22]
+
+[sub_resource type="SpriteFrames" id=1]
+
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "default",
+"speed": 20.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ) ],
+"loop": true,
+"name": "explosion",
+"speed": 20.0
+} ]
+
+[sub_resource type="CircleShape2D" id=2]
+
+custom_solver_bias = 0.0
+radius = 16.0
+
+[sub_resource type="CircleShape2D" id=3]
+
+custom_solver_bias = 0.0
+radius = 64.0
+
+[node name="Bomb" type="RigidBody2D"]
+
+input_pickable = false
+collision_layer = 128
+collision_mask = 25
+mode = 0
+mass = 1.0
+friction = 1.0
+bounce = 0.0
+gravity_scale = 1.0
+custom_integrator = false
+continuous_cd = 0
+contacts_reported = 0
+contact_monitor = false
+sleeping = false
+can_sleep = true
+linear_velocity = Vector2( 0, 0 )
+linear_damp = -1.0
+angular_velocity = 0.0
+angular_damp = -1.0
+script = ExtResource( 1 )
+_sections_unfolded = [ "Collision" ]
+damage = 100
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
+
+frames = SubResource( 1 )
+animation = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+
+shape = SubResource( 2 )
+
+[node name="ExplosionTimer" type="Timer" parent="." index="2"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[node name="ExplosionArea" type="Area2D" parent="." index="3"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 128
+collision_mask = 9
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
+
+[node name="ExplosionShape" type="CollisionShape2D" parent="ExplosionArea" index="0"]
+
+shape = SubResource( 3 )
+
+[connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
+
+[connection signal="timeout" from="ExplosionTimer" to="." method="_on_ExplosionTimer_timeout"]
+
+
