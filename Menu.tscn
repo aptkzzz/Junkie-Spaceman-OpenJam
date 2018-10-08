@@ -5,7 +5,7 @@
 [ext_resource path="res://fonts/vintage..tres" type="DynamicFont" id=3]
 [ext_resource path="res://audio/junkie.wav" type="AudioStream" id=4]
 
-[node name="Menu" type="Node" index="0"]
+[node name="Menu" type="Node"]
 
 script = ExtResource( 1 )
 

@@ -14,9 +14,9 @@ func _on_AnimatedSprite_animation_finished():
         $AnimatedSprite.animation = "work"
         $AnimatedSprite.play()
         $SpawnTimer.start()
-    if $AnimatedSprite.animation == "remove":
-        $AnimatedSprite.stop()
-        queue_free()
+    #if $AnimatedSprite.animation == "remove":
+        #$AnimatedSprite.stop()
+        #queue_free()
 
 func _on_SpawnTimer_timeout():
     if $AnimatedSprite.animation == "work":
