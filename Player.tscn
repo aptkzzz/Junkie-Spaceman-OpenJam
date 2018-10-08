@@ -42,7 +42,7 @@ custom_solver_bias = 0.0
 radius = 32.0
 height = 64.0
 
-[node name="Player" type="KinematicBody2D" index="0" groups=[
+[node name="Player" type="KinematicBody2D" groups=[
 "Players",
 ]]
 
@@ -76,7 +76,7 @@ Bomb = ExtResource( 3 )
 
 frames = SubResource( 1 )
 animation = "idle"
-frame = 2
+frame = 6
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
@@ -112,8 +112,8 @@ editor_draw_drag_margin = false
 [node name="BombTimer" type="Timer" parent="." index="3"]
 
 process_mode = 1
-wait_time = 1.0
-one_shot = false
+wait_time = 5.0
+one_shot = true
 autostart = false
 
 [node name="PlayerShot" type="AudioStreamPlayer2D" parent="." index="4"]
@@ -137,5 +137,7 @@ max_distance = 2000.0
 attenuation = 1.0
 bus = "Master"
 area_mask = 1
+
+[connection signal="timeout" from="BombTimer" to="." method="_on_BombTimer_timeout"]
 
 

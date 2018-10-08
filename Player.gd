@@ -38,6 +38,7 @@ var current_weapon = 0
 var facing_right = true
 var weapons = ["lasergun", "bomb"]
 var score = 0
+var can_use_bomb = true
 
 func _process(delta):
     var movement = Vector2()
@@ -119,13 +120,20 @@ func shoot():
     bullet.linear_velocity = velocity
 
 func drop_bomb():
+    if not can_use_bomb:
+        return false
     var mousepos = get_global_mouse_position()
     var mypos = get_global_position()
     var bomb = Bomb.instance()
     $BombFly.play(0)
+    can_use_bomb = false
+    $BombTimer.start()
     get_parent().add_child(bomb)
     bomb.set_position(get_position())
     bomb.damage = bomb_damage
     bomb.look_at(mousepos)
     var velocity = Vector2(bomb_force, 0).rotated(bomb.get_rotation())
     bomb.linear_velocity = velocity
+
+func _on_BombTimer_timeout():
+    can_use_bomb = true

@@ -56,19 +56,13 @@ func _on_ShootTimer_timeout():
 func shoot(mypos, playerpos):
     var direction = (playerpos - mypos).normalized()
     var bullet = Bullet.instance()
-    var velocity = Vector2(bullet_speed, 0).rotated(bullet.get_rotation())
     $ShotSound.play(0)
-    if playerpos.x > mypos.x and not rotated_right:
-        return false
-    elif playerpos.x < mypos.x and rotated_right:
-        return false
     get_parent().add_child(bullet)
     bullet.damage = damage
     bullet.look_at(playerpos)
-    if rotated_right:
-        bullet.set_position(get_position() + velocity / 2)
-    if not rotated_right:
-        bullet.set_position(get_position() - velocity / 2)
+    bullet.set_position(get_position())
+    bullet.look_at(playerpos)
+    var velocity = Vector2(bullet_speed, 0).rotated(bullet.get_rotation())
     bullet.linear_velocity = velocity
     
 

@@ -2,21 +2,20 @@ extends Node2D
 
 export (PackedScene) var Demon
 export (int) var count = 5
+export (float) var spawntime = 0.5
 export (bool) var rotated_right = true
 
 func _ready():
     $AnimatedSprite.flip_h = not rotated_right
     $AnimatedSprite.animation = "create"
     $AnimatedSprite.play()
+    $SpawnTimer.wait_time = spawntime
 
 func _on_AnimatedSprite_animation_finished():
     if $AnimatedSprite.animation == "create":
         $AnimatedSprite.animation = "work"
         $AnimatedSprite.play()
         $SpawnTimer.start()
-    #if $AnimatedSprite.animation == "remove":
-        #$AnimatedSprite.stop()
-        #queue_free()
 
 func _on_SpawnTimer_timeout():
     if $AnimatedSprite.animation == "work":
