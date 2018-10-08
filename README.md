@@ -9,4 +9,4 @@ Goal of game - kill all enemies.
 ## Assets
 All arts and main OST were created by our team. 
 We use Oestrogen font https://www.1001freefonts.com/oestrogen.font
-Sounds were created by 
+Sounds were created by https://github.com/inexorgame/audioaugust
