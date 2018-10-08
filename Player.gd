@@ -5,6 +5,8 @@ signal update_health(hp)
 signal death
 signal success_end
 
+export (int) var level = 1
+
 export (int) var health = 200
 
 export (int) var gravity = 500

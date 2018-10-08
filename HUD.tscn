@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://HUD.gd" type="Script" id=1]
+[ext_resource path="res://fonts/vintage..tres" type="DynamicFont" id=2]
+[ext_resource path="res://fonts/button.tres" type="DynamicFont" id=3]
 
 [sub_resource type="StyleBoxFlat" id=1]
 
@@ -111,6 +113,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
+custom_fonts/font = ExtResource( 2 )
 align = 1
 valign = 1
 autowrap = true
@@ -118,9 +121,9 @@ uppercase = true
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-_sections_unfolded = [ "Anchor", "Rect" ]
+_sections_unfolded = [ "Anchor", "Rect", "custom_fonts" ]
 
-[node name="ContinueButton" type="Button" parent="." index="2"]
+[node name="RestartButton" type="Button" parent="." index="2"]
 
 anchor_left = 0.5
 anchor_top = 1.0
@@ -137,16 +140,44 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
+custom_fonts/font = ExtResource( 3 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-text = "CONTINUE"
-flat = false
+text = "Restart"
+flat = true
 align = 1
-_sections_unfolded = [ "Rect" ]
+_sections_unfolded = [ "Rect", "custom_fonts" ]
 
-[node name="ScoreText" type="Label" parent="." index="3"]
+[node name="ToMenu" type="Button" parent="." index="3"]
+
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -181.0
+margin_top = -260.0
+margin_right = 179.0
+margin_bottom = -180.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 3 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "GIVE UP"
+flat = true
+align = 1
+_sections_unfolded = [ "Rect", "custom_fonts" ]
+
+[node name="ScoreText" type="Label" parent="." index="4"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -162,6 +193,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
+custom_fonts/font = ExtResource( 2 )
 text = "0"
 align = 1
 valign = 1
@@ -170,5 +202,10 @@ uppercase = true
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
+
+[connection signal="pressed" from="RestartButton" to="." method="_on_RestartButton_pressed"]
+
+[connection signal="pressed" from="ToMenu" to="." method="_on_ToMenu_pressed"]
 
 
