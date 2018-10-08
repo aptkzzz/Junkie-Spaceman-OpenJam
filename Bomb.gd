@@ -9,6 +9,7 @@ func _ready():
 
 func _on_ExplosionTimer_timeout():
     $AnimatedSprite.animation = "explosion"
+    $Explosion.play(0)
     $AnimatedSprite.play()
 
 func _on_AnimatedSprite_animation_finished():

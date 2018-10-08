@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://PlayerBullet.tscn" type="PackedScene" id=2]
@@ -19,6 +19,8 @@
 [ext_resource path="res://art/mc/run/mc_run_frame_5.png" type="Texture" id=17]
 [ext_resource path="res://art/mc/run/mc_run_frame_6.png" type="Texture" id=18]
 [ext_resource path="res://art/mc/run/mc_run_frame_7.png" type="Texture" id=19]
+[ext_resource path="res://audio/player_shot.ogg" type="AudioStream" id=20]
+[ext_resource path="res://audio/bomb_throw.ogg" type="AudioStream" id=21]
 
 [sub_resource type="SpriteFrames" id=1]
 
@@ -40,7 +42,7 @@ custom_solver_bias = 0.0
 radius = 32.0
 height = 64.0
 
-[node name="Player" type="KinematicBody2D" groups=[
+[node name="Player" type="KinematicBody2D" index="0" groups=[
 "Players",
 ]]
 
@@ -51,6 +53,7 @@ collision_mask = 29
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision", "Transform" ]
+level = 1
 health = 200
 gravity = 1000
 floor_angle_tolerance = 50
@@ -112,5 +115,27 @@ process_mode = 1
 wait_time = 1.0
 one_shot = false
 autostart = false
+
+[node name="PlayerShot" type="AudioStreamPlayer2D" parent="." index="4"]
+
+stream = ExtResource( 20 )
+volume_db = 10.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+[node name="BombFly" type="AudioStreamPlayer2D" parent="." index="5"]
+
+stream = ExtResource( 21 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
 
 

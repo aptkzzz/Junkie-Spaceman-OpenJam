@@ -111,6 +111,7 @@ func shoot():
     var mypos = get_global_position()
     var bullet = Bullet.instance()
     get_parent().add_child(bullet)
+    $PlayerShot.play(0) 
     bullet.set_position(get_position())
     bullet.damage = bullet_damage
     bullet.look_at(mousepos)
@@ -121,6 +122,7 @@ func drop_bomb():
     var mousepos = get_global_mouse_position()
     var mypos = get_global_position()
     var bomb = Bomb.instance()
+    $BombFly.play(0)
     get_parent().add_child(bomb)
     bomb.set_position(get_position())
     bomb.damage = bomb_damage

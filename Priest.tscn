@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Priest.gd" type="Script" id=1]
 [ext_resource path="res://Drop.tscn" type="PackedScene" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://art/priest_frames/priest_eyes_2.png" type="Texture" id=17]
 [ext_resource path="res://art/priest_frames/priest_eyes_1.png" type="Texture" id=18]
 [ext_resource path="res://art/priest_frames/priest_eyes_0.png" type="Texture" id=19]
+[ext_resource path="res://audio/priest_hit.ogg" type="AudioStream" id=20]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -107,7 +108,7 @@ shape = SubResource( 1 )
 
 frames = SubResource( 2 )
 animation = "default"
-frame = 9
+frame = 6
 playing = true
 
 [node name="HitTimer" type="Timer" parent="." index="2"]
@@ -149,6 +150,17 @@ animation = "0"
 
 frames = SubResource( 5 )
 animation = "0"
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="." index="7"]
+
+stream = ExtResource( 20 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
 
 [connection signal="timeout" from="HitTimer" to="." method="_on_HitTimer_timeout"]
 

@@ -24,6 +24,7 @@ func _ready():
     $WalkTimer.start()
 
 func hit(damage):
+    $HitSound.play(0)
     hp -= damage
     if hp <= 0:
         die()

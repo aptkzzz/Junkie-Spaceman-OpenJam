@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Menu.gd" type="Script" id=1]
 [ext_resource path="res://fonts/button.tres" type="DynamicFont" id=2]
 [ext_resource path="res://fonts/vintage..tres" type="DynamicFont" id=3]
+[ext_resource path="res://audio/junkie.wav" type="AudioStream" id=4]
 
 [node name="Menu" type="Node" index="0"]
 
@@ -156,6 +157,17 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Margin", "custom_fonts" ]
+
+[node name="AwesomeOST" type="AudioStreamPlayer2D" parent="." index="2"]
+
+stream = ExtResource( 4 )
+volume_db = 10.0
+pitch_scale = 1.0
+autoplay = true
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
 
 [connection signal="pressed" from="VBoxContainer/Continue" to="." method="_on_Continue_pressed"]
 

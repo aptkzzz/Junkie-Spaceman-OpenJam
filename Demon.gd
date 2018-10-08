@@ -24,6 +24,7 @@ func _ready():
     $WalkTimer.start()
 
 func hit(damage):
+    $HitSound.play(0)
     hp -= damage
     if hp <= 0:
         die()
@@ -56,6 +57,7 @@ func shoot(mypos, playerpos):
     var direction = (playerpos - mypos).normalized()
     var bullet = Bullet.instance()
     var velocity = Vector2(bullet_speed, 0).rotated(bullet.get_rotation())
+    $ShotSound.play(0)
     if playerpos.x > mypos.x and not rotated_right:
         return false
     elif playerpos.x < mypos.x and rotated_right:
