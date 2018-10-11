@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Level.gd" type="Script" id=1]
 [ext_resource path="res://tiles.tres" type="TileSet" id=2]
@@ -7,12 +7,13 @@
 [ext_resource path="res://audio/junkie.wav" type="AudioStream" id=5]
 [ext_resource path="res://Generator.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Priest.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Door.tscn" type="PackedScene" id=8]
 
 [node name="Level" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
-next_level_path = "res://Level3.tscn"
+next_level_path = "res://Menu.tscn"
 
 [node name="TileMap" type="TileMap" parent="." index="0"]
 
@@ -40,7 +41,7 @@ __meta__ = {
 
 [node name="Player" parent="." index="1" instance=ExtResource( 3 )]
 
-position = Vector2( 2961, -700 )
+position = Vector2( 140.594, 1226.75 )
 
 [node name="HUD" parent="Player" index="4" instance=ExtResource( 4 )]
 
@@ -62,8 +63,8 @@ autostart = false
 
 [node name="Generator" parent="." index="4" instance=ExtResource( 6 )]
 
-position = Vector2( 736, 1200 )
-rotation = -1.5708
+position = Vector2( 355.144, 1311.01 )
+rotation = 0.0121287
 collision_layer = 512
 collision_mask = 2
 _sections_unfolded = [ "Collision", "Transform" ]
@@ -116,11 +117,16 @@ position = Vector2( 1528, 274 )
 
 position = Vector2( 1700, 268 )
 
+[node name="Door" parent="." index="17" instance=ExtResource( 8 )]
+
+position = Vector2( 703.585, 1201.6 )
+scale = Vector2( 2.0017, 2.31689 )
+
 [connection signal="death" from="Player" to="Player/HUD" method="player_death"]
 
-[connection signal="success_end" from="Player" to="Player/HUD" method="success_end"]
-
 [connection signal="success_end" from="Player" to="." method="successful_end"]
+
+[connection signal="success_end" from="Player" to="Player/HUD" method="success_end"]
 
 [connection signal="update_health" from="Player" to="Player/HUD" method="set_hp"]
 
