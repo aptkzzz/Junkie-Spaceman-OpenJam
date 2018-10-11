@@ -17,27 +17,27 @@ extents = Vector2( 16, 16 )
 flags = 4
 load_path = ""
 
-[sub_resource type="RectangleShape2D" id=6]
-
-custom_solver_bias = 0.0
-extents = Vector2( 16, 16 )
-
-[sub_resource type="RectangleShape2D" id=7]
-
-custom_solver_bias = 0.0
-extents = Vector2( 16, 16 )
-
 [sub_resource type="RectangleShape2D" id=3]
 
 custom_solver_bias = 0.0
-extents = Vector2( 16, 8 )
+extents = Vector2( 16, 16 )
 
 [sub_resource type="RectangleShape2D" id=4]
 
 custom_solver_bias = 0.0
-extents = Vector2( 16, 14 )
+extents = Vector2( 16, 16 )
 
 [sub_resource type="RectangleShape2D" id=5]
+
+custom_solver_bias = 0.0
+extents = Vector2( 16, 8 )
+
+[sub_resource type="RectangleShape2D" id=6]
+
+custom_solver_bias = 0.0
+extents = Vector2( 16, 14 )
+
+[sub_resource type="RectangleShape2D" id=7]
 
 custom_solver_bias = 0.0
 extents = Vector2( 16, 16 )
@@ -78,7 +78,7 @@ extents = Vector2( 16, 16 )
 2/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
-"shape": SubResource( 6 ),
+"shape": SubResource( 3 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 16, 16 )
 } ]
 3/name = "MetalFloor"
@@ -92,7 +92,7 @@ extents = Vector2( 16, 16 )
 3/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
-"shape": SubResource( 7 ),
+"shape": SubResource( 4 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 16, 16 )
 } ]
 4/name = "Platform"
@@ -106,7 +106,7 @@ extents = Vector2( 16, 16 )
 4/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
-"shape": SubResource( 3 ),
+"shape": SubResource( 5 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 16, 8 )
 } ]
 5/name = "Spike"
@@ -120,7 +120,7 @@ extents = Vector2( 16, 16 )
 5/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
-"shape": SubResource( 4 ),
+"shape": SubResource( 6 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 16, 18 )
 } ]
 6/name = "Wire"
@@ -134,7 +134,7 @@ extents = Vector2( 16, 16 )
 6/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
-"shape": SubResource( 5 ),
+"shape": SubResource( 7 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 16, 16 )
 } ]
 
